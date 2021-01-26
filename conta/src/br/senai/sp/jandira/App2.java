@@ -1,6 +1,7 @@
 package br.senai.sp.jandira;
 
 import br.senai.sp.jandira.model.Cliente;
+
 import br.senai.sp.jandira.model.Conta;
 
 public class App2 {
@@ -19,10 +20,9 @@ public class App2 {
 		contaPedro.setTitular(pedro);
 		contaPedro.depositar(100);
 		contaPedro.setNumero("222-2");
-		
 		System.out.println(contaPedro.getTitular().getTelefone());
 		                   /* cliente*****/
-		System.out.println(contaPedro.setTitular().setNome());
+		System.out.println(contaPedro.getTitular().getNome());
 		contaPedro.getTitular().setNome("Pedro Jose");
 		System.out.println(contaPedro.getTitular().getNome());
 		

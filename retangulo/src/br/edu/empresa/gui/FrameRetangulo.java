@@ -3,10 +3,13 @@ package br.edu.empresa.gui;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import br.edu.empresa.model.Retangulo;
@@ -25,30 +28,43 @@ public class FrameRetangulo {
 		JLabel labelAltura = new JLabel ();
 		labelAltura.setText("Altura: ");
 		//** Definir a posição do tamanho do label ( x , y , w , h)
-		labelAltura.setBounds(10, 10, 80, 30);
+		labelAltura.setBounds(10, 10, 60, 30);
 		
 		//*** Criar um TextFild
 		
 		JTextField  textAltura = new JTextField();
-		textAltura.setBounds(90, 10, 100, 30);
+		textAltura.setBounds(70, 10, 50, 30);
 		
-		// Criar um Label e TextField
+		// Criar um Label Base
 		
 		JLabel labelBase = new JLabel();
-		labelBase.setText(null);
 		labelBase.setText("Base: ");
-		labelBase.setBounds(90, 45, 80, 30);
+		labelBase.setBounds(10, 50, 60, 30);
 		
+		// CONTRUIR JTEXTFIELD base //
 		JTextField  textBase = new JTextField();
-		textBase.setBounds(90, 45, 100, 30);
+		textBase.setBounds(70, 50, 50, 30);
 		
-		//** criar botao
+		//** criar botao Calcular***//
 		
 		JButton buttonCalcular = new JButton ();
 		buttonCalcular.setText("Calcular");
-		Color laranja = new Color (255,180,0);
-		buttonCalcular.setBackground(laranja);
-		buttonCalcular.setBounds(10, 95, 180, 30);
+		buttonCalcular.setBounds(10, 100, 110, 30);
+		 
+		//*** botão limpar***//
+		JButton buttonLimpar = new JButton ();
+		buttonLimpar.setText("Limpar");
+		buttonLimpar.setBounds(10, 140, 110, 30);
+		
+		//*** Lables resultados **//
+		
+		JLabel labelArea = new JLabel();
+		labelArea.setText("Área: ");
+		labelArea.setBounds(150, 10, 70, 30);
+		
+		JLabel labelPerimetro = new JLabel();
+		labelPerimetro.setText("Perimetro: ");
+		labelPerimetro.setBounds(150,50, 100, 30);
 		
 		//*** Colocar label altura dentro do painel de conteúdo 
 		telaRetangulo.getContentPane().add(labelAltura);
@@ -56,23 +72,24 @@ public class FrameRetangulo {
 		telaRetangulo.getContentPane().add(labelBase);
 		telaRetangulo.getContentPane().add(textBase);
 		telaRetangulo.getContentPane().add(buttonCalcular);
+		telaRetangulo.getContentPane().add(buttonLimpar);
+		telaRetangulo.getContentPane().add(labelArea);
+		telaRetangulo.getContentPane().add(labelPerimetro);
 		
-	
 		
 		telaRetangulo.setVisible(true);
 		
-		//*** Cliques na tela 
+		//*** Ouvintes de ações/eventos 
 		buttonCalcular.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-			Retangulo r = new Retangulo();
-			r.setAltura(Double.parseDouble(textAltura.getText()));
-			r.setBase(Double.parseDouble(textBase.getText()));
-			
-			labelAltura.setText(String.copyValueOf(r.calcularArea()));
-			labelBase.setText(String.copyValueOf(r.calcularPerimetro()));
+				Retangulo r1 = new Retangulo();
+				r1.setAltura(Double.parseDouble(textAltura.getText()));
+				r1.setBase(Double.parseDouble(textBase.getText()));
+				labelArea.setText( "Área: " + String.valueOf(r1.calcularArea()));
+				labelPerimetro.setText("Perimetro: " + String.valueOf(r1.calcularPerimetro()));
 			}
 		});
 		
